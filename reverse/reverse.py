@@ -38,5 +38,6 @@ class LinkedList:
 
         return False
 
-    def reverse_list(self, node, prev):
-        pass
+    def reverse_list(self, node):
+        # print the reverse value of the list
+        # if the node has a next pointercd

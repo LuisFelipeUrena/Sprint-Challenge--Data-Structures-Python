@@ -7,11 +7,23 @@ class RingBuffer:
         
 
     def append(self, item):
-        # self.ls.append(item)
+        self.ls.insert(0,item)
         if len(self.ls) == self.capacity:
-            self.ls.appendleft(item)
-        else:
-            self.ls.append(item)    
+            self.ls.popleft()
+            
+            
+        
+        return self.ls    
+         
+         
+         
+            # self.capacity -=1
+        # self.ls.append(item)
+        # self.ls.append(item)
+        # if len(self.ls) == self.capacity:
+        #     self.ls.appendleft(item)
+        # else:
+        #     self.ls.append(item)    
         
         
         
