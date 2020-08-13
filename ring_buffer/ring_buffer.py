@@ -8,22 +8,43 @@
 
 from collections import deque
 class RingBuffer:
-    def __init__(self, capacity):
-        self.capacity = capacity
-        self.ls = deque([],maxlen=self.capacity)
+    # the ring buffer has to be of a fixed size
+    def __init__(self,size_max):
+        self.capacity = size_max
+        self.data = deque(maxlen=self.capacity)
+        self.indicator = 0
+    
+    def append(self,value):
+        # if the buffer is not filled up to capacity, it should
+        # just append elements normally
+        if self.capacity != len(self.data):
+            self.data.append(value)
+        else:
+            self.data.remove(self.data[self.indicator])
+            self.data.insert(self.indicator,value)
+            self.indicator += 1
+        
+        if self.indicator == self.capacity:
+            self.indicator = 0    
+            
+    
+    
+    # def __init__(self, capacity):
+    #     self.capacity = capacity
+    #     self.ls = deque([],maxlen=self.capacity)
 
         
 
-    def append(self, item):
-        replacement = 0
-        if len(self.ls) < self.capacity:
-            return self.ls.append(item)
-        if len(self.ls) == self.capacity:
-            self.ls.remove(self.ls[replacement])
-            self.ls.insert(replacement,item)
-            replacement +=1
-        if replacement == self.capacity:
-            replacement = 0
+    # def append(self, item):
+    #     replacement = 0
+    #     if len(self.ls) < self.capacity:
+    #         return self.ls.append(item)
+    #     if len(self.ls) == self.capacity:
+    #         self.ls.remove(self.ls[replacement])
+    #         self.ls.insert(replacement,item)
+    #         replacement +=1
+    #     if replacement == self.capacity:
+    #         replacement = 0
 
 
 
@@ -68,6 +89,6 @@ class RingBuffer:
     
 
     def get(self):
-        return list(self.ls)
+        return list(self.data)
         
         

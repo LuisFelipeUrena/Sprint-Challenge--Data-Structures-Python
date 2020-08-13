@@ -38,8 +38,50 @@ class LinkedList:
             current = current.get_next()
 
         return False
-
+    def _reverse(self,cur,prev):
+        if cur.next_node is None:
+            self.head = cur
+            cur.next_node = prev
+            return
+        next_ = cur.next_node
+        cur.next_node = prev
+        self._reverse(next_,cur)    
+    
+    
     def reverse_list(self, node):
+        node = self.head
+        if node is None:
+            return
+        self._reverse(node,None)   
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    #    prev = None
+    #    cur = node
+    #    if not cur:
+    #        return prev
+    #    nxt = cur.next_node
+    #    cur.next_node = prev
+    #    prev = cur
+    #    cur = nxt
+    #    return self.reverse_list(cur)
+
+            
+       
+       
         # print the reverse value of the list
         # if the node has a next pointercd
         # if node is None or node.next_node is None:
@@ -51,18 +93,18 @@ class LinkedList:
         # sys.setrecursionlimit(1500)
       
 
-        if self.head is None:
-            return None
-        current  = self.head
-        next_ = current.next_node
-        if next_ is None:
-            self.reverse_list(next_)    
-        prev = None
-        current = self.head
-        while (current is not None):
+        # if self.head is None:
+        #     return None
+        # current  = self.head
+        # next_ = current.next_node
+        # if next_ is None:
+        #     self.reverse_list(next_)    
+        # prev = None
+        # current = self.head
+        # while (current is not None):
                 
-            next_ = current.next_node
-            current.next_node = prev
-            prev = current
-            current = next_
-        self.head = prev    
+        #     next_ = current.next_node
+        #     current.next_node = prev
+        #     prev = current
+        #     current = next_
+        # self.head = prev    
